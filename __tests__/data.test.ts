@@ -1,3 +1,4 @@
+import {ObjectId} from "mongodb";
 import {seedSampleData, seedFdaData} from "../scripts/seed";
 import {Database} from "../src/lib/database";
 import {User, Inventory, Item, Product} from "../src/models/models";
@@ -18,14 +19,19 @@ describe("database module", () => {
 
   test("add user", async () => {
     const user = new User("Cormac");
+    const cormacId = new ObjectId();
+    user._id = cormacId;
     const id = await db.addUser(user);
-    expect(id).not.toBeNull();
-
+    expect(id).toEqual(cormacId);
+    
     const users = await db.getUsers();
+    // Because we seeded one already
     expect(users.length).toBe(2);
 
-    expect(users[0].name).toEqual("Tony");
-    expect(users[1].name).toEqual("Cormac");
+    let u = users[1];
+    expect(u.name).toEqual("Cormac");
+    expect(u._id).toEqual(cormacId);
+
   });
 
   test("add product", async () => {
@@ -36,3 +42,4 @@ describe("database module", () => {
     expect(product.expiration).toBe(7);
   })
 });
+
