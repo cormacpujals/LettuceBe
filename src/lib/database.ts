@@ -1,9 +1,10 @@
 import {MongoClient, Collection, Db, ObjectId} from "mongodb";
 
-import {User, Inventory, Item} from "../models/models";
+import {User, Inventory, Item, Product} from "../models/models";
 
 const defaultUri = process.env["DB_URI"];
 const usersCollectionName = "users";
+const productsCollectionName = "products";
 
 export class Database {
   static readonly dbName = "food";
@@ -11,6 +12,7 @@ export class Database {
   client: MongoClient;
   db?: Db;
   users?: Collection;
+  products?: Collection;
 
   constructor(uri?: string) {
     uri = uri || defaultUri;
@@ -26,7 +28,8 @@ export class Database {
     await this.client.connect();
     console.log("Connected.");
     this.db = this.client.db(Database.dbName);
-    this.users = this.db.collection(usersCollectionName!);
+    this.users = this.db.collection(usersCollectionName)!;
+    this.products = this.db.collection(productsCollectionName)!;
   }
 
   async close(): Promise<void> {
@@ -35,11 +38,20 @@ export class Database {
 
   async getUsers(): Promise<User[]> {
     // TODO: implement paging with the cursor
-    return await this.users!.find({}).toArray() as User[];
+    return await this.users!.find().toArray() as User[];
   }
-
+  
   async addUser(user: User): Promise<ObjectId | null> {
     const result = await this.users!.insertOne(user);
     return result.acknowledged ? result.insertedId : null;
   }
+  
+  async getProducts(): Promise<Product[]> {
+    return await this.products!.find().toArray() as Product[];
+  }
+
+  async addProduct(product: Product) {
+    const result = await this.products!.insertOne(product);
+  }
+
 }
