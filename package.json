@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "script": "NODE_OPTIONS='--experimental-specifier-resolution=node' ts-node --transpile-only --esm ",
+    "seed": "npm run script scripts/seed.ts"
   },
   "dependencies": {
     "@types/node": "18.14.1",
@@ -15,16 +17,20 @@
     "@types/react-dom": "18.0.11",
     "eslint": "8.34.0",
     "eslint-config-next": "13.2.1",
+    "install": "^0.13.0",
+    "mongodb": "5.1",
     "next": "13.2.1",
+    "npm": "^9.5.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "4.9.5",
-    "uuid": "^9.0.0"
+    "typescript": "4.9.5"
   },
   "devDependencies": {
     "@types/jest": "^29.4.0",
     "@types/uuid": "^9.0.1",
+    "dotenv": "^16.0.3",
     "jest": "^29.4.3",
-    "ts-jest": "^29.0.5"
+    "ts-jest": "^29.0.5",
+    "ts-node": "^10.9.1"
   }
 }
