@@ -1,6 +1,6 @@
-import {seedSampleData} from "../scripts/seed";
+import {seedSampleData, seedFdaData} from "../scripts/seed";
 import {Database} from "../src/lib/database";
-import {User, Inventory, Item} from "../src/models/models";
+import {User, Inventory, Item, Product} from "../src/models/models";
 
 describe("database module", () => {
   let db: Database;
@@ -28,9 +28,11 @@ describe("database module", () => {
     expect(users[1].name).toEqual("Cormac");
   });
 
-  test("get ingredient", () => {
-    const shelf = await db.getIngredient("milk");
-    expect(shelf.category).toBe("dairy"));
-    expect(shelf.expiration).toBe(7);
+  test("add product", async () => {
+    const product = new Product("cheese", "dairy", 7);
+    const somethingHere = await db.addProduct(product)
+    expect(product.name).toBe("cheese");
+    expect(product.category).toBe("dairy");
+    expect(product.expiration).toBe(7);
   })
 });

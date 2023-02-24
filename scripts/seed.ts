@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import {Database} from "../src/lib/database";
-import {User, Inventory, Item} from "../src/models/models";
+import {User, Inventory, Item, Product} from "../src/models/models";
 
 const uri = process.env["DB_TEST_URI"];
 if (!uri) {
@@ -33,20 +33,29 @@ export async function seedSampleData() {
   console.log("Done.");
 }
 
+
 export async function seedFdaData() {
   // TODO: https://github.com/subfuzion/simple-next-mongo-demo/issues/11
-  await ingredients.insertMany([
-    new Ingredient("milk", "dairy", "7"),
-    new Ingredient("milk", "dairy", "14"),
-    new Ingredient("milk", "dairy", "1w"),
-    new Ingredient("milk", "dairy", "1w"),
-    {
-      "name",
-      "category",
-      "expiration",
-    },
-    {
+  const db = new Database(uri);
+  await db.connect();
 
-    },
+  try {
+    await db.products!.drop() 
+  } catch(_) {
+
+  }
+
+  const products = db.products!;
+
+  console.log("Seeding db...")
+
+  let product = new Product("milk", "dairy", 7)
+  let productTwo = new Product("eggs", "dairy", 14)
+  let result = await products.insertMany([
+    product,
+    productTwo,
   ]);
+
+  await db.close();
+  console.log("Done.")
 }
