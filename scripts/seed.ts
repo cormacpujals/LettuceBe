@@ -10,7 +10,7 @@ if (!uri) {
   process.exit(1);
 }
 
-export async function seed() {
+export async function seedSampleData() {
   const db = new Database(uri);
   await db.connect();
 
@@ -31,4 +31,22 @@ export async function seed() {
 
   await db.close();
   console.log("Done.");
+}
+
+export async function seedFdaData() {
+  // TODO: https://github.com/subfuzion/simple-next-mongo-demo/issues/11
+  await ingredients.insertMany([
+    new Ingredient("milk", "dairy", "7"),
+    new Ingredient("milk", "dairy", "14"),
+    new Ingredient("milk", "dairy", "1w"),
+    new Ingredient("milk", "dairy", "1w"),
+    {
+      "name",
+      "category",
+      "expiration",
+    },
+    {
+
+    },
+  ]);
 }
