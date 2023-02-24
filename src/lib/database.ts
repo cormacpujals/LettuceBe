@@ -1,36 +1,45 @@
-import {User} from "../models/user";
-import { v4 as ID } from 'uuid';
+import {MongoClient, Collection, Db, ObjectId} from "mongodb";
 
-// MOCK
-export type ObjectId = string;
+import {User, Inventory, Item} from "../models/models";
+
+const defaultUri = process.env["DB_URI"];
+const usersCollectionName = "users";
 
 export class Database {
-  // MOCK
-  db?: {
-    users: User[]
-  }
+  static readonly dbName = "food";
+  uri: string;
+  client: MongoClient;
+  db?: Db;
+  users?: Collection;
 
-  async connect() {
-    // MOCK
-    this.db = {
-      users: []
+  constructor(uri?: string) {
+    uri = uri || defaultUri;
+    if (!uri) {
+      throw new Error("Provide a uri or set DB_URI");
     }
-    Promise.resolve(true);
+    this.uri = uri;
+    this.client = new MongoClient(uri, {w: "majority"});
   }
 
-  async addUser(user: User): Promise<ObjectId> {
-    // MOCK adding _id
-    user._id = ID();
-
-    const users = await this.getUsers();
-    users.push(user);
-    return Promise.resolve(user._id);
+  async connect(): Promise<void> {
+    console.log("Connecting to database...");
+    await this.client.connect();
+    console.log("Connected.");
+    this.db = this.client.db(Database.dbName);
+    this.users = this.db.collection(usersCollectionName!);
   }
 
-  /**
-   * Constraint: must be connected to database
-   */
+  async close(): Promise<void> {
+    await this.client.close();
+  }
+
   async getUsers(): Promise<User[]> {
-    return Promise.resolve(this.db!.users);
+    // TODO: implement paging with the cursor
+    return await this.users!.find({}).toArray() as User[];
+  }
+
+  async addUser(user: User): Promise<ObjectId | null> {
+    const result = await this.users!.insertOne(user);
+    return result.acknowledged ? result.insertedId : null;
   }
 }

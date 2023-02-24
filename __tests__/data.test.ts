@@ -1,20 +1,29 @@
+import {seed} from "../scripts/seed";
 import {Database} from "../src/lib/database";
 import {User, Inventory, Item} from "../src/models/models";
 
 describe("database module", () => {
-  test("add user", async () => {
-    const db = new Database();
-    await db.connect();
+  let db: Database;
 
-    const user = new User("Tony");
+  beforeAll(async () => {
+    await seed();
+    db = new Database();
+    await db.connect();
+  });
+
+  afterAll(async () => {
+    await db.close();
+  })
+
+  test("add user", async () => {
+    const user = new User("Cormac");
     const id = await db.addUser(user);
-    expect(id.length).not.toBe("");
+    expect(id).not.toBe("");
 
     const users = await db.getUsers();
-    expect(users.length).toBe(1);
+    expect(users.length).toBe(2);
 
-    // console.log(JSON.stringify(db));
-    // console.log(JSON.stringify(users));
     expect(users[0].name).toEqual("Tony");
+    expect(users[1].name).toEqual("Cormac");
   });
 });
