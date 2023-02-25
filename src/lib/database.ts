@@ -45,6 +45,10 @@ export class Database {
     const result = await this.users!.insertOne(user);
     return result.acknowledged ? result.insertedId : null;
   }
+
+  async updateUser(user: User) {
+    // TODO
+  }
   
   async getProducts(): Promise<Product[]> {
     return await this.products!.find().toArray() as Product[];

@@ -3,7 +3,7 @@ export class Item {
   dateAdded: number;
   dateExpires?: number; // computation is deferred
 
-  constructor(name:string) {
+  constructor(name: string) {
     this.name = name;
     this.dateAdded = Date.now();
   }
