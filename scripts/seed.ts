@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import {ObjectId} from "mongodb"
 dotenv.config();
 
 import {Database} from "../src/lib/database";
@@ -9,6 +10,8 @@ if (!uri) {
   console.log("ERROR: DB_URI not set.")
   process.exit(1);
 }
+
+export const MagicUserId = new ObjectId();
 
 export async function seedSampleData() {
   const db = new Database(uri);
@@ -25,6 +28,11 @@ export async function seedSampleData() {
   console.log("Seeding database...");
 
   let user = new User("Tony");
+  user._id = MagicUserId;
+  // TODO: add my inventory of items
+  let item = user.addItem("milk", "dairy");
+  if (!item) throw new Error(`unable to add item: milk, dairy`);
+
   let result = await users.insertMany([
     user,
   ]);
