@@ -4,6 +4,7 @@ dotenv.config();
 
 import {Database} from "../src/lib/database";
 import {User, Inventory, Item, Product} from "../src/models/models";
+import {Category, Expiration} from "../src/models/product";
 
 const uri = process.env["DB_TEST_URI"];
 if (!uri) {
@@ -48,7 +49,7 @@ export async function seedFdaData() {
   await db.connect();
 
   try {
-    await db.products!.drop() 
+    await db.products!.drop()
   } catch(_) {
 
   }
@@ -63,6 +64,21 @@ export async function seedFdaData() {
     product,
     productTwo,
   ]);
+
+  // let result = await products.insertMany([
+  //   {
+  //     _id: new ObjectId(),
+  //     category: "dairy",
+  //     name: "milk",
+  //     expiration: 7,
+  //   },
+  //   {
+  //     _id: new ObjectId(),
+  //     category: "poultry",
+  //     name: "chicken",
+  //     expiration: 5,
+  //   }
+  // ]);
 
   await db.close();
   console.log("Done.")
