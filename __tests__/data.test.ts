@@ -57,5 +57,9 @@ describe("database module", () => {
     expect(user.name).toEqual("Tony");
   });
 
+  test("add item", async () => {
+    // user clicks product, product is added as an item under users inventory
+
+  })
 });
 
