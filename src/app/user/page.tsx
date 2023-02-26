@@ -18,6 +18,7 @@ export default async function User() {
   return (
       <div>
         {user.name}
+        <div>{JSON.stringify(user.inventory)}</div>
       </div>
   )
 }
