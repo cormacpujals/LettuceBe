@@ -6,9 +6,13 @@ import {Database} from "../src/lib/database";
 import {User, Inventory, Item, Product} from "../src/models/models";
 import {Category, Expiration} from "../src/models/product";
 
-const uri = process.env["DB_TEST_URI"];
+const uri = process.env["DB_URI"];
 if (!uri) {
   console.log("ERROR: DB_URI not set.")
+  process.exit(1);
+}
+if (!uri.includes("-test")) {
+  console.log("ERROR: DB_URI database name component must contain '-test' (ex: mongodb.net/cormac-test) for now.");
   process.exit(1);
 }
 
@@ -32,6 +36,7 @@ export async function seedSampleData() {
   user._id = MagicUserId;
   // TODO: add my inventory of items
   let item = user.addItem("milk", "dairy");
+  item!.dateExpires = 7;
   if (!item) throw new Error(`unable to add item: milk, dairy`);
 
   let result = await users.insertMany([
