@@ -1,23 +1,34 @@
-import {MagicUserId} from "../../../../scripts/seed";
 import {Inventory} from "../../../models/inventory";
 import {ObjectId} from "mongodb";
+import {User} from "../../../models/user";
+import {get} from "../../../lib/http";
 
-// TODO use MagicUserId hardcoded for now
-
-
-async function getUser(id: string | ObjectId) {
-  const res = await fetch(`http://localhost:3000/api/users/${id}`);
-  if(!res.ok) {
-    throw new Error('Failed to fetch data');
+async function getUser(id: string): Promise<User> {
+  const url = `http://localhost:3000/api/users/${id}`;
+  const response = await get(url);
+  if (!response.ok) {
+    throw new Error(response.status);
   }
-  return res.json();
+
+  const result = await response.json();
+  if (!result.success) {
+    throw new Error(result.reason);
+  }
+
+  return result.data as User;
 }
 
-export default async function User(params: any) {
-  console.log(`requested id: ${params['id']}`);
-  // HACK: ignore passed in id and use MagicUserId
-  const user : {name: string, inventory: Inventory} = await getUser(MagicUserId);
+export default async function Page({
+  params,
+  searchParams,
+}: {
+  params: { id: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
+  const id = params.id;
+  const user = await getUser(id);
   console.log(user)
+
   return (
       <div>
         {user.name}
