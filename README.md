@@ -1,38 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Developer notes
 
-## Getting Started
+## Database
 
-First, run the development server:
+https://cloud.mongodb.com/v2/6328ba687732180fd73bdc9a
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+1) If you don't have access, ask Cormac to add you to the access page at
+https://cloud.mongodb.com/v2/6328ba687732180fd73bdc9a#/access
+
+2) Add a username for yourself and an auto-generated password, and use the
+   Built-in Role for read and write access to any database on this page:
+   https://cloud.mongodb.com/v2/6328ba687732180fd73bdc9a#/security/database/users
+
+
+3) You will need both an `.env` for tests and scripts and a `.env.local` for the Next.js app.
+
+Replace USER and PASSWORD (note that USER shows up in two places for `DB_TEST_URI` (so
+your tests don't conflict with other dev's tests):
+
+.env
+``` text
+# Keep .env and .env.local in sync!
+# .env.local is used by the Next.js app
+# .env is used by dotenv for
+#   jest unit tests (loaded implicitly using jest.config.js)
+#   npm run seed (loaded explicitly)
+#
+DB_URI=mongodb+srv://USER:PASSWORD@demo.cqowzef.mongodb.net/food?retryWrites=true&w=majority
+DB_TEST_URI=mongodb+srv://USER:PASSWORD@demo.cqowzef.mongodb.net/USER?retryWrites=true&w=majority
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+.env.local
+```text
+# Keep .env and .env.local in sync!
+# .env.local is used by the Next.js app
+# .env is used by dotenv for
+#   jest unit tests (loaded implicitly using jest.config.js)
+#   npm run seed (loaded explicitly)
+#
+DB_URI=mongodb+srv://USER:PASSWORD@demo.cqowzef.mongodb.net/food?retryWrites=true&w=majority
+DB_TEST_URI=mongodb+srv://USER:PASSWORD@demo.cqowzef.mongodb.net/USER?retryWrites=true&w=majority
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Run tests:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+`pnpm test`
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Run dev server:
 
-## Learn More
+pnpm dev
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
