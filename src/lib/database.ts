@@ -73,6 +73,7 @@ export class Database {
   async getUserId(id: ObjectId | string): Promise<Result> {
     // due to string serialization, always ensure _id is an ObjectId
     id = new ObjectId(id);
+    console.log(`getUserId: ${id}`);
     const result = await this.users!.findOne({_id: id});
     console.log(`database getUser(${id}) => result: ${result}`);
     if (!result) {

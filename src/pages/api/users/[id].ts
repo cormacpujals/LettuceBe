@@ -10,10 +10,11 @@ export default async function handler(
 ) {
   if (req.method === "GET") {
     const {id} = req.query;
+    console.log(`id: ${id} => ${new ObjectId(id as string)}`);
     let db = new Database();
     try {
       await db.connect();
-      const result = await db.getUserId(id as string);
+      const result = await db.getUserId(new ObjectId(id as string));
       if (!result.success) {
         console.log(`get user id ${id} failed: ${result.reason}`)
         return res.status(404).json(result);
