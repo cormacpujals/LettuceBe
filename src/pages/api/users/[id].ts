@@ -2,7 +2,7 @@ import {ObjectId} from "mongodb";
 import type {NextApiRequest, NextApiResponse} from "next";
 
 import {Database, Result} from "../../../lib/database";
-import {User} from "../../../models/user";
+
 
 export default async function handler(
     req: NextApiRequest,
@@ -16,7 +16,7 @@ export default async function handler(
       await db.connect();
       const result = await db.getUserId(new ObjectId(id as string));
       if (!result.success) {
-        console.log(`get user id ${id} failed: ${result.reason}`)
+        console.log(`get user id ${id} failed: ${result.reason}`);
         return res.status(404).json(result);
       }
       console.log(`success: get user api: ${JSON.stringify(result)}`);

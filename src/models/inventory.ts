@@ -1,5 +1,6 @@
 import {Item} from "./item";
 
+
 export class Inventory {
   items: Item[];
 

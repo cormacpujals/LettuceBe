@@ -1,10 +1,12 @@
-import {MongoClient, Collection, Db, ObjectId} from "mongodb";
+import {Collection, Db, MongoClient, ObjectId} from "mongodb";
 
-import {User, Inventory, Item, Product} from "../models/models";
+import {Product, User} from "../models/models";
+
 
 const defaultUri = process.env["DB_URI"];
 const usersCollectionName = "users";
 const productsCollectionName = "products";
+
 
 export class Result {
   success: boolean;
@@ -25,6 +27,7 @@ export class Result {
     return new Result(false, undefined, reason);
   }
 }
+
 
 export class Database {
   static readonly dbName = "food";
