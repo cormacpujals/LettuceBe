@@ -3,7 +3,7 @@ import {seedSampleData, seedFdaData} from "../scripts/seed";
 import {Database} from "../src/lib/database";
 import {User, Inventory, Item, Product} from "../src/models/models";
 import { createMocks } from 'node-mocks-http';
-import userHandler from "../src/pages/api/user";
+import userHandler from "src/pages/api/users/[id]";
 
 describe("database module", () => {
   let db: Database;
@@ -49,18 +49,21 @@ describe("database module", () => {
       method: 'GET',
     });
 
+    // http://localhost:3000/api/users/1
     await userHandler(req, res);
 
     expect(res._getStatusCode()).toBe(200);
-    let user = JSON.parse(res._getData()) as User;
+
+    const user = JSON.parse(res._getData()) as User;
     expect(user.name).toEqual("Tony");
-    let items = user.inventory.items;
+
+    const items = user.inventory.items;
     expect(items[0].name).toEqual("milk");
     expect(items[0].dateExpires).toEqual(7);
   });
 
   test.skip("add item", async () => {
-    // user clicks product, product is added as an item under users inventory
+    // users clicks product, product is added as an item under users inventory
 
   })
 });
