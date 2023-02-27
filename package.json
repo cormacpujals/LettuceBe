@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch",
+    "test": "jest --runInBand --watch",
     "script": "NODE_OPTIONS='--experimental-specifier-resolution=node' ts-node --transpile-only --esm ",
     "seed": "npm run script scripts/seed.ts"
   },
