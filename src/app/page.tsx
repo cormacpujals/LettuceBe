@@ -1,13 +1,11 @@
-import Image from 'next/image'
-import { Inter } from "next/font/google";
-import styles from './page.module.css'
-import User from "./users/[id]/page";
+import {Inter} from "next/font/google";
 
-const inter = Inter({ subsets: ['latin'] })
+
+const inter = Inter({subsets: ["latin"]});
 
 export default function Home() {
   return (
-    <main>
-    </main>
-  )
+      <main>
+      </main>
+  );
 }

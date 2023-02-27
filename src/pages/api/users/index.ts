@@ -1,12 +1,11 @@
-import {ObjectId} from 'mongodb';
-import type {NextApiRequest, NextApiResponse} from 'next';
+import type {NextApiRequest, NextApiResponse} from "next";
 import {Database, Result} from "../../../lib/database";
 import {User} from "../../../models/user";
 
 
 export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Result>
+    req: NextApiRequest,
+    res: NextApiResponse<Result>
 ) {
   if (req.method === "GET") {
     // get all users

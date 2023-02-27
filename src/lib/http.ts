@@ -6,6 +6,7 @@ export async function get(url: string): Promise<any> {
   });
   return res;
 }
+
 export async function post(url: string, data: {}): Promise<any> {
   const res = await fetch(url, {
     method: "POST",

@@ -1,7 +1,6 @@
-import {Inventory} from "../../../models/inventory";
-import {ObjectId} from "mongodb";
-import {User} from "../../../models/user";
 import {get} from "../../../lib/http";
+import {User} from "../../../models/user";
+
 
 async function getUser(id: string): Promise<User> {
   const url = `http://localhost:3000/api/users/${id}`;
@@ -27,12 +26,12 @@ export default async function Page({
 }) {
   const id = params.id;
   const user = await getUser(id);
-  console.log(user)
+  console.log(user);
 
   return (
       <div>
         {user.name}
         <div>{JSON.stringify(user.inventory)}</div>
       </div>
-  )
+  );
 }

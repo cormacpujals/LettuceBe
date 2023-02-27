@@ -1,7 +1,8 @@
-import {CollectionModel} from "./model";
 import {Inventory} from "./inventory";
 import {Item} from "./item";
-import {Product, Category} from "./product";
+import {CollectionModel} from "./model";
+import {Category, Product} from "./product";
+
 
 export class User extends CollectionModel {
   name: string;
