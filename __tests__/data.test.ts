@@ -10,7 +10,7 @@ describe("database module", () => {
 
   beforeAll(async () => {
     await seedSampleData();
-    await seedFdaData();
+   await seedFdaData();
     db = new Database();
     await db.connect();
   });
@@ -51,13 +51,15 @@ describe("database module", () => {
 
     await userHandler(req, res);
 
-
     expect(res._getStatusCode()).toBe(200);
     let user = JSON.parse(res._getData()) as User;
     expect(user.name).toEqual("Tony");
+    let items = user.inventory.items;
+    expect(items[0].name).toEqual("milk");
+    expect(items[0].dateExpires).toEqual(7);
   });
 
-  test("add item", async () => {
+  test.skip("add item", async () => {
     // user clicks product, product is added as an item under users inventory
 
   })
