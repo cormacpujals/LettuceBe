@@ -1,6 +1,4 @@
-
 import { Inventory } from "../models/inventory";
-
 
 // async function getUser() {
 //   const res = await fetch('http://localhost:3000/api/user');
@@ -41,12 +39,6 @@ export default async function ShelfItem() {
   // const user : {name: string, inventory: Inventory} = await getUser();
   // const items : {name: string, dateAdded: number, dateExpires?: number}[] = user.inventory.items;
   return (
-
-    // <ul>
-    //   {items.map((item, idx)=>
-    //     <li key={idx}><div>food item: {item.name} date added: {item.dateAdded} expires: {item.dateExpires}</div></li>
-    //   )}
-    // </ul>
     <>
       {items.map((item, idx) =>
         <div className="border-b mx-6 text-black-300 grid grid-flow-row">
