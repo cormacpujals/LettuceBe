@@ -8,6 +8,8 @@ export type SafetyColor = "red" | "yellow" | "green";
 
 
 export class Product extends CollectionModel {
+  static readonly products = Product.getProducts();
+
   name: string;
   category: Category;
   expiration: Expiration;
@@ -30,6 +32,22 @@ export class Product extends CollectionModel {
     return item;
   }
 
+  static getProducts(): Product[] {
+    if (Product.products) return Product.products;
+    return [
+      // dairy
+      P("milk", "dairy", 7),
+      P("eggs", "dairy", 14),
+
+      // poultry
+      P("chicken", "poultry", 5),
+
+      // beef
+      P("hamburger", "meat", 5),
+      P("steak", "meat", 5),
+    ];
+  }
+
   getDaysUntilExpiration() {
     return this.expiration - Date.now();
   }
@@ -40,4 +58,8 @@ export class Product extends CollectionModel {
     if (daysLeft < 2) return "yellow";
     return "green";
   }
+}
+
+function P(name: string, category: Category, expiration: number) {
+  return new Product(name, category, expiration);
 }
