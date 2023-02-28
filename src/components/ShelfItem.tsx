@@ -1,4 +1,6 @@
-import {Inventory} from "../models/inventory";
+
+import { Inventory } from "../models/inventory";
+
 
 // async function getUser() {
 //   const res = await fetch('http://localhost:3000/api/user');
@@ -8,7 +10,7 @@ import {Inventory} from "../models/inventory";
 //   return res.json();
 // }
 
-const items : {name: string, dateAdded: number, dateExpires: number}[] = [
+const items: { name: string, dateAdded: number, dateExpires: number }[] = [
   {
     name: "Milk",
     dateAdded: 0,
@@ -39,15 +41,25 @@ export default async function ShelfItem() {
   // const user : {name: string, inventory: Inventory} = await getUser();
   // const items : {name: string, dateAdded: number, dateExpires?: number}[] = user.inventory.items;
   return (
+
     // <ul>
     //   {items.map((item, idx)=>
     //     <li key={idx}><div>food item: {item.name} date added: {item.dateAdded} expires: {item.dateExpires}</div></li>
     //   )}
     // </ul>
-      <div>
-        {items.map((item, idx) =>
-            <h1 key={idx}>{item.name}</h1>
-        )}
-      </div>
+    <>
+      {items.map((item, idx) =>
+        <div className="border-b mx-6 text-black-300 grid grid-flow-row">
+          <div className="mx-4 h-[25px]">
+            <div className="text-reg px-6 float-left" key={idx}>{item.name}</div>
+            <div className="text-xsm float-right">Added On {item.dateAdded}</div>
+          </div>
+          <div className="mx-4 h-[25px]">
+            <div className="bg-blue-400 w-[15%] h-[22px] border rounded p-2 float-left">{/* Expiration */} </div>
+            <div className="bg-red-400 text-white border rounded p-2 w-[15%] h-[22px] float-right">{/* Remove */} </div>
+          </div>
+        </div>
+      )}
+    </>
   )
 }

@@ -1,6 +1,7 @@
 import {get} from "../../../lib/http";
 import {User} from "../../../models/user";
 import ShelfItem from "../../../components/ShelfItem";
+import ItemNavBar from "./components/ItemNavBar";
 
 async function getUser(id: string): Promise<User> {
   const url = `http://localhost:3000/api/users/${id}`;
@@ -29,8 +30,10 @@ export default async function Page({
   console.log(user);
 
   return (
-      <div>
-        {user.name}
+      <div className="mx-2">
+        <h3 className="border-b">{user.name}'s Products</h3>
+        {/* @ts-expect-error Server Component */}
+        <ItemNavBar/>
         {/* @ts-expect-error Server Component */}
         <ShelfItem/>
       </div>
