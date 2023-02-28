@@ -34,7 +34,6 @@ export default async function Page({
         <h3 className="border-b">{user.name}&apos;s Products</h3>
         {/* @ts-expect-error Server Component */}
         <ItemNavBar/>
-        {user.name}
         {/* @ts-expect-error Server Component */}
         <ShelfItem/>
       </div>

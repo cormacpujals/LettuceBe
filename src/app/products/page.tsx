@@ -1,5 +1,5 @@
 'use client';
-import {Category, Product} from "../../models/product";
+import {Category} from "../../models/product";
 
 function addProduct(e: any) {
   console.log(`need this function to capture the product (${e}) and
