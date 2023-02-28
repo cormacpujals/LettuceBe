@@ -8,8 +8,6 @@ export type SafetyColor = "red" | "yellow" | "green";
 
 
 export class Product extends CollectionModel {
-  static readonly products = Product.getProducts();
-
   name: string;
   category: Category;
   expiration: Expiration;
@@ -33,19 +31,7 @@ export class Product extends CollectionModel {
   }
 
   static getProducts(): Product[] {
-    if (Product.products) return Product.products;
-    return [
-      // dairy
-      P("milk", "dairy", 7),
-      P("eggs", "dairy", 14),
-
-      // poultry
-      P("chicken", "poultry", 5),
-
-      // beef
-      P("hamburger", "meat", 5),
-      P("steak", "meat", 5),
-    ];
+    return Products;
   }
 
   getDaysUntilExpiration() {
@@ -63,3 +49,17 @@ export class Product extends CollectionModel {
 function P(name: string, category: Category, expiration: number) {
   return new Product(name, category, expiration);
 }
+
+
+const Products: Product[] = [
+  // dairy
+  P("milk", "dairy", 7),
+  P("eggs", "dairy", 14),
+
+  // poultry
+  P("chicken", "poultry", 5),
+
+  // beef
+  P("hamburger", "meat", 5),
+  P("steak", "meat", 5),
+];
