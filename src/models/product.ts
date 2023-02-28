@@ -2,7 +2,7 @@ import {Item} from "./item";
 import {CollectionModel} from "./model";
 
 
-export type Category = "dairy" | "meat" | "poultry" | "produce" | "pantry" | "seafood";
+export type Category = "dairy" | "mps" | "produce" | "pantry";
 export type Expiration = number;
 export type SafetyColor = "red" | "yellow" | "green";
 
@@ -57,9 +57,9 @@ const Products: Product[] = [
   P("eggs", "dairy", 14),
 
   // poultry
-  P("chicken", "poultry", 5),
+  P("chicken", "mps", 5),
 
   // beef
-  P("hamburger", "meat", 5),
-  P("steak", "meat", 5),
+  P("hamburger", "mps", 5),
+  P("steak", "mps", 5),
 ];
