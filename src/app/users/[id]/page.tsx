@@ -1,6 +1,6 @@
 import {get} from "../../../lib/http";
 import {User} from "../../../models/user";
-
+import ShelfItem from "../../../components/ShelfItem";
 
 async function getUser(id: string): Promise<User> {
   const url = `http://localhost:3000/api/users/${id}`;
@@ -31,7 +31,8 @@ export default async function Page({
   return (
       <div>
         {user.name}
-        <div>{JSON.stringify(user.inventory)}</div>
+        {/* @ts-expect-error Server Component */}
+        <ShelfItem/>
       </div>
   );
 }

@@ -2,7 +2,7 @@ import {Item} from "./item";
 import {CollectionModel} from "./model";
 
 
-export type Category = "dairy" | "meat" | "poultry";
+export type Category = "dairy" | "meat" | "poultry" | "produce" | "pantry" | "seafood";
 export type Expiration = number;
 export type SafetyColor = "red" | "yellow" | "green";
 
