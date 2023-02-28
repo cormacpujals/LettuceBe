@@ -44,10 +44,10 @@ export default async function ShelfItem() {
     //     <li key={idx}><div>food item: {item.name} date added: {item.dateAdded} expires: {item.dateExpires}</div></li>
     //   )}
     // </ul>
-      <>
+      <div>
         {items.map((item, idx) =>
             <h1 key={idx}>{item.name}</h1>
         )}
-      </>
+      </div>
   )
 }
