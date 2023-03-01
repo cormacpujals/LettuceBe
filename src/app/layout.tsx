@@ -1,4 +1,6 @@
 import NavBar from "src/components/NavBar";
+import Providers from "./providers";
+
 import "./globals.css";
 
 
@@ -18,8 +20,10 @@ export default function RootLayout({
       <main className="bg-gray-100 min-h-screen w-screen">
         {/* AuthContext*/}
       <main className='max-w-screen-2xl m-auto bg-white text-grey-dark'>
-        <NavBar/>
-        {children}
+        <Providers>
+          <NavBar/>
+          {children}
+        </Providers>
         </main>
         </main>
         </body>

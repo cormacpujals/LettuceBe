@@ -1,6 +1,7 @@
 import * as http from "http";
 import {Inter} from "next/font/google";
 import Link from "next/link";
+import LoginBtn from './login-btn'
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -26,7 +27,7 @@ export default function Home() {
         <div>See when your ingredients are about to expire</div>
       </div>
       <div className="p-4 grid grid-cols-1 place-content-center w-full">
-        <button className="border rounded content-center px-[10%] drop-shadow-lg">{/* SignUp */}Sign up</button>
+        <LoginBtn className="border rounded content-center px-[10%] drop-shadow-lg">{/* SignUp */}Sign up</LoginBtn>
       </div>
       </main>
   );
