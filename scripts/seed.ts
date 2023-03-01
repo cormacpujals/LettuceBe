@@ -81,7 +81,7 @@ export async function seedFdaData() {
   //   },
   //   {
   //     _id: new ObjectId(),
-  //     category: "poultry",
+  //     category: "mps",
   //     name: "chicken",
   //     expiration: 5,
   //   }
