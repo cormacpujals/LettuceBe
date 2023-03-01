@@ -43,7 +43,10 @@ export class Database {
       throw new Error("Provide a uri or set DB_URI");
     }
     this.uri = uri;
-    this.client = new MongoClient(uri, {w: "majority"});
+    this.client = new MongoClient(uri, {
+      retryWrites: true,
+      w: "majority",
+    });
   }
 
   async connect(): Promise<void> {
