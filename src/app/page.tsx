@@ -1,14 +1,18 @@
 import * as http from "http";
 import {Inter} from "next/font/google";
 import Link from "next/link";
+import assert from "node:assert";
 import LoginBtn from './login-btn'
+
+assert(process.env.TEST_USER_ID);
+const url = `http://localhost:3000/users/${process.env.TEST_USER_ID}`;
 
 const inter = Inter({subsets: ["latin"]});
 
 export default function Home() {
   return (
       <main className="m-8 items-center">
-        <Link href={'http://localhost:3000/users/63fd3735361acdd7adfce20e'}>Click to see test user shelf</Link>
+        <Link href={url}>Click to see test user shelf</Link>
         <br/>
         <Link href={'http://localhost:3000/products'}>Click to see products (from which users will be able to add)</Link>
       <div>
