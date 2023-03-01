@@ -53,13 +53,31 @@ function P(name: string, category: Category, expiration: number) {
 
 const Products: Product[] = [
   // dairy
-  P("milk", "dairy", 7),
-  P("eggs", "dairy", 14),
+  P("Milk", "dairy", 7),
+  P("Eggs", "dairy", 35),
+  P("Heavy Cream", "dairy", 30),
+  P("Ricotta", "dairy", 7),
+  P("Yogurt", "dairy", 14),
 
-  // poultry
-  P("chicken", "mps", 5),
+  // meat, poultry, seafood
+  P("Chicken", "mps", 2),
+  P("Ground Beef", "mps", 2),
+  P("Steak", "mps", 3),
+  P("Bacon", "mps", 14),
+  P("Cold Cuts", "mps", 14),
 
-  // beef
-  P("hamburger", "mps", 5),
-  P("steak", "mps", 5),
+  // produce
+  P("Apples", "produce", 21),
+  P("Blueberries", "produce", 7),
+  P("Bananas", "produce", 5),
+  P("Broccoli", "produce", 7),
+  P("Cauliflower", "produce", 7),
+
+  // pantry
+  P("Ketchup", "pantry", 180),
+  P("Maple Syrup", "pantry", 360),
+  P("Olive Oil", "pantry", 360),
+  P("Honey", "pantry", 360),
+  P("Vinegar", "pantry", 720),
 ];
+
