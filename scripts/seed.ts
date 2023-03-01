@@ -35,11 +35,11 @@ export async function seedSampleData() {
   let user = new User("Tony");
   user._id = MagicUserId;
   // TODO: add my inventory of items
-  user.addItem("Chicken", "poultry");
+  user.addItem("Chicken", "mps");
   user.addItem("Milk", "dairy");
   user.addItem("Blueberries", "produce");
   user.addItem("Brown Rice", "pantry");
-  user.addItem("Beef", "meat");
+  user.addItem("Beef", "mps");
 
   let result = await users.insertMany([
     user,
