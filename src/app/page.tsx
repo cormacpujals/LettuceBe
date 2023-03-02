@@ -27,6 +27,7 @@ export default function Home() {
         <div>See when your ingredients are about to expire</div>
       </div>
       <div className="p-4 grid grid-cols-1 place-content-center w-full">
+        {/* @ts-expect-error Server Component */}
         <LoginBtn className="border rounded content-center px-[10%] drop-shadow-lg">{/* SignUp */}Sign up</LoginBtn>
       </div>
       </main>

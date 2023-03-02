@@ -6,6 +6,7 @@ import {Category, Product} from "./product";
 
 export class User extends CollectionModel {
   name: string;
+
   inventory: Inventory;
 
   constructor(name: string, inventory?: Inventory) {

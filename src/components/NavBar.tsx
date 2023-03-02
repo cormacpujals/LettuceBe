@@ -15,6 +15,7 @@ export default function NavBar() {
           <MenuOutlinedIcon/>
           <FavoriteBorderIcon/>
           <AccountCircleOutlinedIcon/>
+
         </div>
       </div>
     </nav>
