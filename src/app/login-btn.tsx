@@ -6,16 +6,14 @@ export default function Component() {
   if (session) {
     return (
       <>
-        Signed in as {session.user!.email} <br />
-        
-        <button onClick={() => signOut()}>Sign out</button>
+        <h2 className="mb-2">Welcome, {session.user!.name}</h2>
+        <button className="bg-tertiary rounded-md" onClick={() => signOut()}>Sign out</button>
       </>
     )
   }
   return (
     <>
-      Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
+      <button className="bg-tertiary rounded-md" onClick={() => signIn()}>Sign in or Sign up!</button>
     </>
   )
 }
