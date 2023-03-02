@@ -30,10 +30,12 @@ export default async function Page({
   console.log(user);
 
   return (
-      <div className="mx-2">
-        <h3 className="border-b">{user.name}&apos;s Products</h3>
+      <div className="h-screen mx-2">
+        <h3 className="border-b my-3 text-lg">Catherine&apos;s Products</h3>
+        <br/>
         {/* @ts-expect-error Server Component */}
         <ItemNavBar/>
+        <br/>
         {/* @ts-expect-error Server Component */}
         <ShelfItem/>
       </div>
