@@ -31,7 +31,7 @@ export default async function Page({
 
   return (
       <div className="h-screen mx-2">
-        <h3 className="border-b my-3 text-lg">Catherine&apos;s Products</h3>
+        <h3 className="border-b my-3 text-lg">Cormac&apos;s Products</h3>
         <br/>
         {/* @ts-expect-error Server Component */}
         <ItemNavBar/>
