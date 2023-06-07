@@ -9,7 +9,7 @@ export default function Home() {
   return (
       <main className="m-7 items-center">
         <Link
-            href={'http://localhost:3000/users/63fd3735361acdd7adfce20e'}
+            href={'https://lettuce-be.vercel.app/users/63fd3735361acdd7adfce20e'}
             className="bg-tertiary rounded-md p-1"
         >
           View your inventory
@@ -17,7 +17,7 @@ export default function Home() {
         <br/>
         <br/>
         <Link
-            href={'http://localhost:3000/products'}
+            href={'https://lettuce-be.vercel.app/products'}
             className="bg-tertiary rounded-md p-1"
         >
           Add products to your inventory
