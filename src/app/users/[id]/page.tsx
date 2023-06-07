@@ -4,7 +4,7 @@ import ShelfItem from "../../../components/ShelfItem";
 import ItemNavBar from "./components/ItemNavBar";
 
 async function getUser(id: string): Promise<User> {
-  const url = `http://localhost:3000/api/users/${id}`;
+  const url = `https://lettuce-be.vercel.app/api/users/${id}`;
   const response = await get(url);
   if (!response.ok) {
     throw new Error(response.status);
